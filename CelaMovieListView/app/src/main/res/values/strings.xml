@@ -1,0 +1,11 @@
+<resources>
+    <string name="app_name">Cela Movie</string>
+    <string name="MovieName">電影名稱:</string>
+
+    <string name="MovieDate">上映日期:</string>
+    <string name="MovieIntro">電影簡介</string>
+    <string name="Pic1">電影圖</string>
+    <string name="ButSubmit">確認訂票</string>
+    <string name="Butprvious">回上一頁</string>
+    <string name="ButStory">詳細資訊</string>
+</resources>
