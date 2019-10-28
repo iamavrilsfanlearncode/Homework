@@ -28,7 +28,7 @@ public class MovieListBig extends AppCompatActivity {
 
         //使用bundle接收資料+setText
         bag = getIntent().getExtras();
-        int MovieImg = bag.getInt("movie_img");
+        MovieImg = bag.getInt("movie_img");
         ImageView Pic2 = findViewById(R.id.Pic2);
         Pic2.setImageResource(MovieImg);
         TextView tvTxtName = findViewById(R.id.TxtName);
@@ -45,18 +45,10 @@ public class MovieListBig extends AppCompatActivity {
         btn_previous.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                /*
-                                Intent intent = new Intent();
-                                //回到MainActivity, this主要Activity  ; class 下一個Activity
-                                intent.setClass(MovieListBig.this,MainActivity.class);
-                                startActivity(intent);
-                                 */
+
                 finish();//先暫停專案的工作, btnPrevious執行setOnClickListener
             }
         });//回到上一頁 END
-
-
-
 
 
     }

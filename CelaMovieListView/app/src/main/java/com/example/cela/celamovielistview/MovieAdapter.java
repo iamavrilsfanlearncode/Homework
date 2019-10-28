@@ -2,6 +2,8 @@ package com.example.cela.celamovielistview;
 
 import android.app.Activity;
 import android.app.AlertDialog;
+import android.app.NotificationChannel;
+import android.app.NotificationManager;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -17,6 +19,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
+import androidx.core.app.NotificationCompat;
 import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.ArrayList;
@@ -42,12 +45,6 @@ public class MovieAdapter extends RecyclerView.Adapter<MovieAdapter.ViewHolder> 
             but_sub = itemView.findViewById(R.id.ButSubmit);
             but_story = itemView.findViewById(R.id.ButStory);
 
-            itemView.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    Toast.makeText(itemView.getContext(),"點選想看的電影",Toast.LENGTH_SHORT).show();
-                }
-            });
             //確認送出點擊事件
             but_sub.setOnClickListener(new View.OnClickListener() {
                 @Override
@@ -59,7 +56,29 @@ public class MovieAdapter extends RecyclerView.Adapter<MovieAdapter.ViewHolder> 
                                 //設定確定按鈕
                                 @Override
                                 public void onClick(DialogInterface dialogInterface, int i) {
-                                    Toast.makeText(itemView.getContext(),"恭喜你成功訂購!",Toast.LENGTH_SHORT).show();
+                                    //Toast.makeText(itemView.getContext(),"恭喜你成功訂購!",Toast.LENGTH_SHORT).show();
+                                    String idPopcorn = "id_pop";
+                                    //Toast.makeText(itemView.getContext(),"點選想看的電影",Toast.LENGTH_SHORT).show();
+                                    // notification Start
+                                    NotificationManager notificationManager = (NotificationManager) context.getSystemService(Context.NOTIFICATION_SERVICE);
+                                    //通知一設定
+                                    NotificationChannel channel_pop = new NotificationChannel(
+                                            idPopcorn,
+                                            "Channel Pop",
+                                            NotificationManager.IMPORTANCE_HIGH);
+                                    channel_pop.setDescription("恭喜獲得免費爆米花券!");
+                                    channel_pop.enableLights(true);
+                                    channel_pop.enableVibration(true);
+                                    //依設定建立通知
+                                    notificationManager.createNotificationChannel(channel_pop);
+                                    //第一個訊息
+                                    NotificationCompat.Builder builder = new NotificationCompat.Builder(context, idPopcorn)
+                                            .setSmallIcon(R.mipmap.popcorn)
+                                            .setContentTitle("VIP Free ")
+                                            .setContentText("貴賓專屬電影優惠")
+                                            .setAutoCancel(true);
+                                    //啟動通知
+                                    notificationManager.notify(0,builder.build());
                                 }
                             })
                             .setNegativeButton("取消", new DialogInterface.OnClickListener() {
@@ -96,6 +115,7 @@ public class MovieAdapter extends RecyclerView.Adapter<MovieAdapter.ViewHolder> 
     }//ViewHolder extends RecyclerView.ViewHolder  END
     @NonNull
     @Override
+    //
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View v = myInflater.from(parent.getContext())
                 .inflate(R.layout.item_view, parent, false);
@@ -105,7 +125,8 @@ public class MovieAdapter extends RecyclerView.Adapter<MovieAdapter.ViewHolder> 
 
     @Override
 
-    //傳值
+    //傳值,  itemView, 每一格都是一個View, Holder 是容器 , 生成每個view 的onBindViewHolder 事件 , 所以不在此做bundle
+
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
         holder.Pic_1.setImageResource(movies.get(position).getMovieImg());
         holder.txt_name.setText(movies.get(position).getMovieName());
@@ -127,58 +148,5 @@ public class MovieAdapter extends RecyclerView.Adapter<MovieAdapter.ViewHolder> 
     }
 }//MovieAdapter  END
 
-    /*舊程式
-    //Context
-    public MovieAdapter(Context context,ArrayList<Movie>movies){
-        this.movies = movies;
-        myInflater = (LayoutInflater)context.getSystemService(context.LAYOUT_INFLATER_SERVICE);
-
-    }
-
-    @Override
-    public int getCount() {
-        return movies.size();
-    }
-
-    @Override
-    public Object getItem(int i) {
-        return movies.get(i);
-    }
-
-    @Override
-    public long getItemId(int i) {
-        return movies.indexOf(getItem(i));
-    }
-
-    @Override
-    public View getView(int i, View converview, ViewGroup viewGroup) {
-
-
-        Movie one_movie = (Movie)getItem(i);
-        converview = myInflater.inflate(R.layout.item_view,null);//利用inflater連結子畫面layout
-        //宣告子畫面中物件對應與id
-
-        ImageView Pic_1 = converview.findViewById(R.id.Pic1);
-
-        TextView txt_name = converview.findViewById(R.id.TxtName);
-        TextView txt_Intro = converview.findViewById(R.id.TxtIntro);
-        TextView txt_date = converview.findViewById(R.id.TxtDate);
-        //設定物件資料來源
-        Pic_1.setImageResource(one_movie.getMovieImg());
-
-        txt_name.setText(one_movie.getMovieName());
-        txt_Intro.setText(one_movie.getMovieIntro());
-        txt_date.setText(one_movie.getMovieDate());
-
-
-        return converview; //結束
-
-
-    }
-
-
-    private class ViewHolder {
-    }
-      舊程式*/
 
 

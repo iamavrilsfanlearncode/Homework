@@ -17,7 +17,7 @@ public class Movie {
         MovieName = movieName;
         MovieDate = movieDate;
         MovieIntro = movieIntro;
-    }
+        }
 
     //右鍵Generate  Getter and Setter
 
