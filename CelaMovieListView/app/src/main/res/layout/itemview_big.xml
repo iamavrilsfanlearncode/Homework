@@ -31,7 +31,7 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:text="電影名稱:"
-                android:textSize="18sp" />
+                android:textSize="15sp" />
 
             <TextView
                 android:id="@+id/TxtName"
@@ -39,7 +39,7 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="3"
                 android:text="TextView"
-                android:textSize="18sp" />
+                android:textSize="15sp" />
         </LinearLayout>
 
         <LinearLayout
@@ -54,7 +54,7 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:text="上映日期:"
-                android:textSize="18sp" />
+                android:textSize="15sp" />
 
             <TextView
                 android:id="@+id/TxtDate"
@@ -62,7 +62,7 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="3"
                 android:text="TextView"
-                android:textSize="18sp" />
+                android:textSize="15sp" />
         </LinearLayout>
 
         <LinearLayout
@@ -77,28 +77,30 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:text="劇情介紹:"
-                android:textSize="18sp" />
+                android:textSize="15sp" />
 
             <TextView
                 android:id="@+id/TxtIntro"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginTop="7dp"
                 android:layout_weight="10"
                 android:text="TextView"
-                android:textSize="18sp" />
+                android:textSize="15sp" />
 
         </LinearLayout>
 
         <Button
             android:id="@+id/Butprvious"
-            android:layout_width="202dp"
-            android:layout_height="wrap_content"
+            android:layout_width="150dp"
+            android:layout_height="32dp"
             android:layout_gravity="center"
             android:layout_marginTop="20dp"
             android:layout_marginBottom="10dp"
             android:background="@drawable/gradual2"
             android:fontFamily="sans-serif-black"
             android:text="@string/Butprvious"
-            android:textSize="18sp" />
+            android:textColor="@color/white"
+            android:textSize="14sp" />
     </LinearLayout>
 </ScrollView>
